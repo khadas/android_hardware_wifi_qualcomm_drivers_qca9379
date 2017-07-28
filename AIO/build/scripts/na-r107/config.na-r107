@@ -3,9 +3,15 @@
 #
 
 export KERNELPATH=/lib/modules/${shell uname -r}/build
-export KERNELARCH=i386
-export TOOLPREFIX=
+#export KERNELARCH=i386
+#export TOOLPREFIX=
 
+#export ANDROID_X86_PROJ_PATH=/mnt/nfsroot/weiguang.ruan/iptv44/
+#export KERNELPATH=${ANDROID_X86_PROJ_PATH}/out/target/product/p201_iptv/obj/KERNEL_OBJ
+export TOOLCHAIN=/opt/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux/bin/
+export KERNELARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+export TOOLPREFIX=${CROSS_COMPILE}
 #export ANDROID_X86_PROJ_PATH=<path of Android-x86 project>
 #export KERNELPATH=${ANDROID_X86_PROJ_PATH}/out/target/product/x86/obj/kernel
 #export TOOLCHAIN=${ANDROID_X86_PROJ_PATH}/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
@@ -23,6 +29,10 @@ export TOOLPREFIX=
 export KLIB=${KERNELPATH}
 export KLIB_BUILD=${KERNELPATH}
 
+ifeq ($(KERNELARCH),arm64)
+    export ARCH=arm64
+endif
+
 # Use local libnl library or not
 export BUILD_LIBNL=y
 export INCLUDE_LIBNL32_HEADER=${ATH_TOPDIR}/apps/libnl-3.2.25/include
@@ -38,6 +48,6 @@ export CONFIG_CFG80211_INTERNAL_REGDB=y
 # PMF (11W)
 export CONFIG_PMF_SUPPORT=y
 
-# Rome USB
-export CONFIG_ROME_IF=usb
-
+export CONFIG_ROME_IF=sdio
+export CONFIG_CLD_HL_SDIO_CORE=y
+export CONFIG_LINUX_QCMBR=y

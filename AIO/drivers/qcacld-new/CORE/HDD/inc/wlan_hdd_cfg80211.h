@@ -2102,7 +2102,7 @@ int wlan_hdd_cfg80211_del_station(struct wiphy *wiphy,
                                   struct net_device *dev,
                                   struct station_del_parameters *param);
 #else
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0)) || defined(WITH_BACKPORTS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,13,0)) || defined(WITH_BACKPORTS)
 int wlan_hdd_cfg80211_del_station(struct wiphy *wiphy,
                                   struct net_device *dev, const u8 *mac);
 #else

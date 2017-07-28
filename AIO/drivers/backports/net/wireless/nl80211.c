@@ -7037,9 +7037,11 @@ void __cfg80211_send_event_skb(struct sk_buff *skb, gfp_t gfp)
 EXPORT_SYMBOL(__cfg80211_send_event_skb);
 
 #ifdef CPTCFG_NL80211_TESTMODE
+/*
 static struct genl_multicast_group nl80211_vendor_mcgrp = {
 	.name = "vendor",
 };
+*/
 
 static int nl80211_testmode_do(struct sk_buff *skb, struct genl_info *info)
 {

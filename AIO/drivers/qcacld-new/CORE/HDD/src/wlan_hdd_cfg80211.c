@@ -15867,7 +15867,7 @@ static bool wlan_hdd_is_duplicate_channel(tANI_U8 *arr,
  *
  * Return: 0 for success, error number on failure.
  */
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0)) || defined(WITH_BACKPORTS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,13,0)) || defined(WITH_BACKPORTS)
 static int __wlan_hdd_change_station(struct wiphy *wiphy,
                                          struct net_device *dev,
                                          const u8 *mac,
@@ -16107,7 +16107,7 @@ static int __wlan_hdd_change_station(struct wiphy *wiphy,
  *
  * Return: 0 for success, error number on failure.
  */
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 16, 0)) || defined(WITH_BACKPORTS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0)) || defined(WITH_BACKPORTS)
 static int wlan_hdd_change_station(struct wiphy *wiphy,
 				   struct net_device *dev,
 				   const u8 *mac,
@@ -21177,7 +21177,7 @@ static int wlan_hdd_cfg80211_dump_station(struct wiphy *wiphy,
 	return ret;
 }
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0)) || defined(WITH_BACKPORTS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,13,0)) || defined(WITH_BACKPORTS)
 static int wlan_hdd_cfg80211_get_station(struct wiphy *wiphy,
                                          struct net_device *dev,
                                          const u8* mac,
@@ -21535,7 +21535,7 @@ int wlan_hdd_cfg80211_del_station(struct wiphy *wiphy,
                                          struct net_device *dev,
                                          struct station_del_parameters *param)
 #else
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0)) || defined(WITH_BACKPORTS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,13,0)) || defined(WITH_BACKPORTS)
 int wlan_hdd_cfg80211_del_station(struct wiphy *wiphy,
                                   struct net_device *dev, const u8 *mac)
 #else
@@ -21613,7 +21613,7 @@ static int __wlan_hdd_cfg80211_add_station(struct wiphy *wiphy,
 }
 
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0)) || defined(WITH_BACKPORTS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,13,0)) || defined(WITH_BACKPORTS)
 static int wlan_hdd_cfg80211_add_station(struct wiphy *wiphy,
                                          struct net_device *dev,
                                          const u8 *mac,
@@ -22414,10 +22414,10 @@ static int __wlan_hdd_cfg80211_tdls_mgmt(struct wiphy *wiphy,
                                        u8 dialog_token, u16 status_code,
                                        u32 peer_capability, const u8 *buf,
                                        size_t len)
-#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 15, 0))
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0))
 static int __wlan_hdd_cfg80211_tdls_mgmt(struct wiphy *wiphy,
                                        struct net_device *dev,
-                                       u8 *peer, u8 action_code,
+                                       const u8 *peer, u8 action_code,
                                        u8 dialog_token,
                                        u16 status_code, u32 peer_capability,
                                        const u8 *buf, size_t len)
@@ -22439,7 +22439,7 @@ static int __wlan_hdd_cfg80211_tdls_mgmt(struct wiphy *wiphy,
     int responder;
     unsigned long rc;
     tANI_U16 numCurrTdlsPeers;
-#if !(TDLS_MGMT_VERSION2) && (LINUX_VERSION_CODE < KERNEL_VERSION(3,15,0))
+#if !(TDLS_MGMT_VERSION2) && (LINUX_VERSION_CODE < KERNEL_VERSION(3,13,0))
     u32 peer_capability;
     peer_capability = 0;
 #endif
@@ -22781,10 +22781,10 @@ static int wlan_hdd_cfg80211_tdls_mgmt(struct wiphy *wiphy,
 					u8 dialog_token, u16 status_code,
 					u32 peer_capability, const u8 *buf,
 					size_t len)
-#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 15, 0))
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0))
 static int wlan_hdd_cfg80211_tdls_mgmt(struct wiphy *wiphy,
 					struct net_device *dev,
-					u8 *peer, u8 action_code,
+					const u8 *peer, u8 action_code,
 					u8 dialog_token,
 					u16 status_code, u32 peer_capability,
 					const u8 *buf, size_t len)
@@ -22815,7 +22815,7 @@ static int wlan_hdd_cfg80211_tdls_mgmt(struct wiphy *wiphy,
 	ret = __wlan_hdd_cfg80211_tdls_mgmt(wiphy, dev, peer, action_code,
 					dialog_token, status_code,
 					peer_capability, buf, len);
-#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 15, 0))
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0))
 	ret = __wlan_hdd_cfg80211_tdls_mgmt(wiphy, dev, peer, action_code,
 					dialog_token, status_code,
 					peer_capability, buf, len);
@@ -23314,7 +23314,7 @@ static int __wlan_hdd_cfg80211_tdls_oper(struct wiphy *wiphy,
     return 0;
 }
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0)) || defined(WITH_BACKPORTS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,13,0)) || defined(WITH_BACKPORTS)
 static int wlan_hdd_cfg80211_tdls_oper(struct wiphy *wiphy,
                                        struct net_device *dev,
                                        const u8 *peer,
@@ -23352,7 +23352,7 @@ int wlan_hdd_cfg80211_send_tdls_discover_req(struct wiphy *wiphy,
 #elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0))
     return wlan_hdd_cfg80211_tdls_mgmt(wiphy, dev, peer,
                             WLAN_TDLS_DISCOVERY_REQUEST, 1, 0, 0, NULL, 0);
-#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3,15,0))
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3,13,0))
     return wlan_hdd_cfg80211_tdls_mgmt(wiphy, dev, peer,
                             WLAN_TDLS_DISCOVERY_REQUEST, 1, 0, 0, NULL, 0);
 #else
@@ -23842,7 +23842,7 @@ static int __wlan_hdd_cfg80211_testmode(struct wiphy *wiphy,
 }
 
 static int wlan_hdd_cfg80211_testmode(struct wiphy *wiphy,
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,12,0)) || defined(WITH_BACKPORTS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0)) || defined(WITH_BACKPORTS)
                                       struct wireless_dev *wdev,
 #endif
                                       void *data, int len)
